@@ -58,8 +58,9 @@ def reply_to_inline(update: Update, context: CallbackContext):
         url = urlparse(query)
         qsl = parse_qsl(url.query)
         new_qs = [(key, value) for (key, value) in qsl if key not in KNOWN_QUERY_KEYS]
-        url.query = urlencode(new_qs)
-        new_url = urlunparse(url)
+        new_qs = urlencode(new_qs)
+        new_url = url._replace(query=new_qs)
+        new_url = urlunparse(new_url)
         results = [
             InlineQueryResultArticle(
                 id=hashlib.sha256(f"{query}".encode("utf-8")).hexdigest(),
