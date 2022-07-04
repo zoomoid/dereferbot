@@ -1,0 +1,12 @@
+resources:
+  - deployment.yaml
+secretGenerator:
+  - name: dereferbot-token
+    options:
+      disableNameSuffixHash: true
+      immutable: true
+    envs:
+      - .env
+commonLabels:
+  app.kubernetes.io/name: dereferbot
+  app.kubernetes.io/created-by: zoomoid
