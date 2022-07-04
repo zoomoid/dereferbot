@@ -64,7 +64,7 @@ def reply_to_inline(update: Update, context: CallbackContext):
         results = [
             InlineQueryResultArticle(
                 id=hashlib.sha256(f"{query}".encode("utf-8")).hexdigest(),
-                title=new_url,
+                title="Deref'd URL",
                 description=new_url,
                 input_message_content=InputTextMessageContent(message_text=new_url),
             )
