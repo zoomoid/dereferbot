@@ -29,7 +29,7 @@ spec:
                   name: dereferbot-token
                   key: DEREFER_BOT_NAME
                   optional: true
-        image: ghcr.io/zoomoid/dereferbot:edge
+        image: ghcr.io/zoomoid/dereferbot:latest
         imagePullPolicy: Always
         resources:
           limits:
