@@ -25,6 +25,8 @@ KNOWN_QUERY_KEYS = [
     "utm_campaign",
     "utm_content",
     "utm_term",
+	"s",
+	"t"
 ]
 
 
