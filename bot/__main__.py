@@ -20,28 +20,37 @@ logging.basicConfig(
 
 KNOWN_QUERY_KEYS = [
     "si",
+    "s",
+    "t",
+]
+
+help_message = """
+Dereferbot removes obnoxious and nasty tracking and ref links from URLs.
+
+Created mostly out of spite because Spotify's Share links get longer and
+longer each day, as they add more and more tracking data.
+
+Created by @zoomoid on [https://github.com/zoomoid/dereferbot](https://github.com/zoomoid/dereferbot).
+"""
+
+common_query_params = [
     "utm_source",
     "utm_medium",
     "utm_campaign",
     "utm_content",
     "utm_term",
-	"s",
-	"t"
 ]
+
+known_query_params = {
+    "open.spotify.com": ["si", "context"],
+    "twitter.com": ["s", "t"]
+}
 
 
 def help_command(update: Update, context: CallbackContext):
     """
     Responds to private messages requesting help
     """
-    help_message = """
-    Dereferbot removes obnoxious and nasty tracking and ref links from URLs.
-
-    Created mostly out of spite because Spotify's Share links get longer and
-    longer each day, as they add more and more tracking data.
-
-    Created by @zoomoid on [https://github.com/zoomoid/dereferbot](https://github.com/zoomoid/dereferbot).
-  """
     update.message.reply_text(help_message, parse_mode=ParseMode.MARKDOWN)
 
 
@@ -58,8 +67,13 @@ def reply_to_inline(update: Update, context: CallbackContext):
 
     try:
         url = urlparse(query)
+
+        if url.hostname == None:
+            return
+
+        kqsl = known_query_params[url.hostname]
         qsl = parse_qsl(url.query)
-        new_qs = [(key, value) for (key, value) in qsl if key not in KNOWN_QUERY_KEYS]
+        new_qs = [(key, value) for (key, value) in qsl if key not in kqsl + common_query_params]
         new_qs = urlencode(new_qs)
         new_url = url._replace(query=new_qs)
         new_url = urlunparse(new_url)
