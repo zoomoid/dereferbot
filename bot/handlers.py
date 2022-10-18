@@ -1,8 +1,11 @@
 import hashlib
+import logging
 
 from telegram import (InlineQueryResultArticle, InputTextMessageContent,
                       ParseMode, Update)
 from telegram.ext import CallbackContext
+
+from bot.selector import Selector
 
 from . import url
 
@@ -33,18 +36,10 @@ def reply_to_inline(update: Update, context: CallbackContext):
     query = update.inline_query.query
     if not query:
         return
-
     try:
-        cleaned_url = url.clean_url(query)
-        results = [
-            InlineQueryResultArticle(
-                id=hashlib.sha256(f"{query}".encode("utf-8")).hexdigest(),
-                title="Deref'd URL",
-                description=cleaned_url,
-                input_message_content=InputTextMessageContent(message_text=cleaned_url),
-            )
-        ]
+        results = Selector.query(query).results()
         context.bot.answer_inline_query(update.inline_query.id, results)
         return
-    except:
+    except Exception as e:
+        logging.error(e)
         return
