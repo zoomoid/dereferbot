@@ -18,7 +18,6 @@ class Selector:
     def query(input: str):
         q = urlparse(input)
         r = root(q.hostname)
-        logging.info(r)
         if r in SpotifyCleaner.Hostnames:
             logging.info("starting new spotify cleaner")
             return SpotifyCleaner(q)

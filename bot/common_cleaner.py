@@ -71,7 +71,6 @@ class CommonCleaner:
         return ".".join(self.__parsed.hostname.split(".")[-2:])
 
     def register(self, hook: Hook):
-        logging.info("registered hook")
         self.__hooks += [hook]
         return self
 
@@ -86,13 +85,7 @@ class CommonCleaner:
                 ),
             )
         ]
-
-        logging.info(base)
-
         hook_results = [h(self.__cleaned) for h in self.__hooks]
-
-        logging.info(hook_results)
-
         res = base + [
             InlineQueryResultArticle(
                 id=hashlib.sha256(f"{s}-{title}-{desc}".encode("utf-8")).hexdigest(),
@@ -102,5 +95,4 @@ class CommonCleaner:
             )
             for (s, (title, desc)) in hook_results
         ]
-
         return res

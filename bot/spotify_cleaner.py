@@ -9,6 +9,3 @@ class SpotifyCleaner(CommonCleaner):
 
     def __init__(self, url: ParseResult) -> None:
         super().__init__(url, self.Specific)
-
-    # def results():
-    #     return super().results()

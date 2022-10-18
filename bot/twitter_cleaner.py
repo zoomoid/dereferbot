@@ -14,6 +14,3 @@ class TwitterCleaner(CommonCleaner):
     def __init__(self, url: ParseResult) -> None:
         super().__init__(url, self.Specific)
         self.register(hook_fxtwitter)
-
-    # def results():
-    #     return super().results()
