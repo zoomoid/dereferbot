@@ -19,10 +19,10 @@ class Selector:
         q = urlparse(input)
         r = root(q.hostname)
         if r in SpotifyCleaner.Hostnames:
-            logging.info("starting new spotify cleaner")
+            # logging.info("starting new spotify cleaner")
             return SpotifyCleaner(q)
         elif r in TwitterCleaner.Hostnames:
-            logging.info("starting new twitter cleaner")
+            # logging.info("starting new twitter cleaner")
             return TwitterCleaner(q)
         else:
             return CommonCleaner(q, [])

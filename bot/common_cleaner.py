@@ -39,8 +39,13 @@ class CommonCleaner:
     __hooks: list[Hook] = []
 
     def __init__(self, url: ParseResult, specific: list[str]) -> None:
+        self.Specific = specific
+
         self.__parsed = url
-        self.Specific += specific
+        self.__cleaned = None
+        self.__hooks = []
+        self.__no_action = False
+        self.__output = ""
 
         if self.__parsed.hostname == None:
             self.__no_action = True
