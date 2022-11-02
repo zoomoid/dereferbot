@@ -4,6 +4,7 @@ from bot.common_cleaner import CommonCleaner
 
 from bot.spotify_cleaner import SpotifyCleaner
 from bot.twitter_cleaner import TwitterCleaner
+from bot.reddit_cleaner import RedditCleaner
 
 def root(hostname: str) -> str:
     """
@@ -24,5 +25,7 @@ class Selector:
         elif r in TwitterCleaner.Hostnames:
             # logging.info("starting new twitter cleaner")
             return TwitterCleaner(q)
+        elif r in RedditCleaner.Hostnames:
+            return RedditCleaner(q)
         else:
             return CommonCleaner(q, [])

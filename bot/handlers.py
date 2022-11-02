@@ -1,8 +1,9 @@
-import hashlib
 import logging
 
-from telegram import (InlineQueryResultArticle, InputTextMessageContent,
-                      ParseMode, Update)
+from telegram import (
+    ParseMode,
+    Update,
+)
 from telegram.ext import CallbackContext
 
 from bot.selector import Selector
