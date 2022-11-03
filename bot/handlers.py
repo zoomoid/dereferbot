@@ -8,8 +8,6 @@ from telegram.ext import CallbackContext
 
 from bot.selector import Selector
 
-from . import url
-
 help_message = """
 Dereferbot removes obnoxious and nasty tracking and ref links from URLs.
 

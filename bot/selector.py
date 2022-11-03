@@ -1,4 +1,3 @@
-import logging
 from urllib.parse import urlparse
 from bot.common_cleaner import CommonCleaner
 
