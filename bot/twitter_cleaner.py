@@ -7,7 +7,7 @@ def hook_fxtwitter(query: ParseResult) -> HookReturn:
 
 
 class TwitterCleaner(CommonCleaner):
-    Hostnames: list[str] = ["twitter.com", "t.co"]
+    Hostnames: list[str] = ["twitter.com", "t.co", "x.com"]
 
     Specific: list[str] = ["s", "t"]
 
