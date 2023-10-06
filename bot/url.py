@@ -17,7 +17,10 @@ def root_hostname(hostname: str) -> str:
     """
     root_hostname returns the root hostname of an arbitrary domain name
 
-    :returns: a string that is the root DNS name of an arbitrary hostname
+    :return: a string that is the root DNS name of an arbitrary hostname.
+
+    .. deprecated:: 1.7.0
+       The object-oriented interface offers more customizability over how to sanitize different types of hosts
     """
     return ".".join(hostname.split(".")[-2:])
 
@@ -25,7 +28,10 @@ def clean_url(url: str) -> str:
     """
     Removes known query parameters from a given url as a string
 
-    :returns: a cleaned url as a proper url-encoded string
+    :return: a cleaned url as a proper url-encoded string.
+
+    .. deprecated:: 1.7.0
+       The object-oriented interface offers more customizability over how to sanitize different types of hosts
     """
     p = urlparse(url)
     if p.hostname == None:
