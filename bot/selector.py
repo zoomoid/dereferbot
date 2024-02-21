@@ -3,6 +3,7 @@ from bot.common_cleaner import CommonCleaner
 
 from bot.spotify_cleaner import SpotifyCleaner, SpotifyLinkCleaner
 from bot.twitter_cleaner import TwitterCleaner
+from bot.reddit_cleaner import RedditCleaner
 
 def root(hostname: str) -> str:
     """
@@ -23,5 +24,7 @@ class Selector:
             return TwitterCleaner(q)
         elif r in SpotifyLinkCleaner.Hostnames:
             return SpotifyLinkCleaner(q)
+        elif r in RedditCleaner.Hostnames:
+            return RedditCleaner(q)
         else:
             return CommonCleaner(q, [])
